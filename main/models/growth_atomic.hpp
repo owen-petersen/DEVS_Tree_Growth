@@ -16,6 +16,15 @@ enum class GrowthStateEn : int {
     growing = 1
 };
 
+std::ostream& operator<<(std::ostream &out, const GrowthStateEn e) {
+    switch(e) {
+        case GrowthStateEn::passive:    out << "passive"; break;
+        case GrowthStateEn::growing:    out << "growing"; break;
+        default:                        out << "unknown"; break;
+    }
+    return out;
+}
+
 struct growth_atomic_state_st {
     GrowthStateEn state;
     double sigma;
@@ -40,8 +49,8 @@ struct growth_atomic_state_st {
 };
 
 std::ostream& operator<<(std::ostream &out, const growth_atomic_state_st& state) {
-    out  << "<" << "next state=" << (int)state.state << "," 
-    << "type=" << (int)state.type << ","
+    out  << "<" << "next state=" << state.state << "," 
+    << "type=" << state.type << ","
     << "base_size=" << state.base_size << ","
     << "height=" << state.height << ">";
     return out;
