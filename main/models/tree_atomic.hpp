@@ -81,3 +81,4 @@ public:
 };
 
 #endif // TREE_ATOMIC_HPP
+
