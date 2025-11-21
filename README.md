@@ -1,7 +1,3 @@
-Project Structure
-<img width="461" height="297" alt="image" src="https://github.com/user-attachments/assets/f111e61e-d002-4f31-8ee3-1c1480873d3c" />
-
-
 Requirements:
 
 Make sure you have the following installed:
