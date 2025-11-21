@@ -3,13 +3,12 @@
 #include <cadmium/core/simulation/root_coordinator.hpp>
 
 #include "models/top_model.hpp"
-#include "cadmium/core/logger/json.hpp"   // <-- YOUR custom logger
+#include "cadmium/core/logger/json.hpp"   
 
 int main() {
-    // Create the top model as shared_ptr (REQUIRED by RootCoordinator)
+    
     auto top = std::make_shared<TopModel>();
 
-    // Create root coordinator (starts at time 0)
     cadmium::RootCoordinator root(top);
 
     // Attach JSON logger
@@ -27,4 +26,5 @@ int main() {
 
     return 0;
 }
+
 
