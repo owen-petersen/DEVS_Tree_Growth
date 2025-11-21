@@ -23,10 +23,6 @@ public:
 
     JSONLogger() : out("tree_output.json") {}
 
-    //-----------------------------------------
-    // LOGGER LIFECYCLE
-    //-----------------------------------------
-
     void start() override {
         buffer.clear();
         packet_id = 1;
@@ -37,17 +33,9 @@ public:
         out.close();
     }
 
-    //-----------------------------------------
-    // TIME LOGGING (unused but required)
-    //-----------------------------------------
-
     void logTime(double) override {
         // We don't need to record time-only events
     }
-
-    //-----------------------------------------
-    // OUTPUT LOGGING (MAIN FUNCTION)
-    //-----------------------------------------
 
     void logOutput(double t,
                    long /*modelId*/,
@@ -55,10 +43,10 @@ public:
                    const std::string& /*portName*/,
                    const std::string& output) override
     {
-        // Expected format: "height,crown"
+        
         double h = 0, c = 0;
 
-        // sscanf works because output looks like:  "9.0,3.0"
+        
         sscanf(output.c_str(), "%lf,%lf", &h, &c);
 
         buffer.push_back({t, h, c});
@@ -68,9 +56,7 @@ public:
         }
     }
 
-    //-----------------------------------------
-    // STATE LOGGING (unused)
-    //-----------------------------------------
+
 
     void logState(double,
                   long,
@@ -82,9 +68,6 @@ public:
 
 private:
 
-    //-----------------------------------------
-    // WRITE BUFFERED ENTRIES TO FILE
-    //-----------------------------------------
 
     void flush() {
         if (buffer.empty()) return;
@@ -112,3 +95,4 @@ private:
 };
 
 #endif
+
