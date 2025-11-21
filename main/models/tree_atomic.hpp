@@ -14,7 +14,6 @@ struct TreeState {
     bool produce = false;
 };
 
-// Make TreeState printable BEFORE Atomic<TreeState> is instantiated
 inline std::ostream& operator<<(std::ostream& os, const TreeState& s) {
     os << "years=" << s.years
        << ",height=" << s.height
@@ -64,7 +63,7 @@ public:
         auto outPort = std::dynamic_pointer_cast<cadmium::_Port<std::string>>(
             this->getOutPort(TreeDefs::OUT_PORT));
 
-        // Encode as "height,crown" for the JSON logger to parse
+       
         std::string msg = std::to_string(s.height) + "," + std::to_string(s.crown);
         outPort->addMessage(msg);
     }
@@ -75,10 +74,11 @@ public:
 
     std::string logState() const override {
         std::stringstream ss;
-        ss << state;        // uses our operator<< above
+        ss << state;        
         return ss.str();
     }
 };
 
 #endif // TREE_ATOMIC_HPP
+
 
