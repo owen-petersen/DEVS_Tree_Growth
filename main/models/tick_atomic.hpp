@@ -10,7 +10,7 @@ struct TickState {
     int max_ticks = 50;
 };
 
-// Make TickState printable BEFORE Atomic<TickState> is instantiated
+
 inline std::ostream& operator<<(std::ostream& os, const TickState& s) {
     os << "ticks=" << s.ticks << "/" << s.max_ticks;
     return os;
@@ -58,9 +58,10 @@ public:
 
     std::string logState() const override {
         std::stringstream ss;
-        ss << state;        // uses our operator<< above
+        ss << state;        
         return ss.str();
     }
 };
 
 #endif // TICK_ATOMIC_HPP
+
