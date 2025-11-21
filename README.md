@@ -1,19 +1,6 @@
 Project Structure
-DEVS_Tree_Growth/
-│
-├── bin/                    # Contains the tree_output.json after running
-│
-├── main/
-│   ├── core/logger/        # Custom JSON logger implementation
-│   ├── models/             # TickAtomic, TreeAtomic, TopModel
-│   ├── CMakeLists.txt      # Build instructions for simulation
-│   └── main.cpp            # Entry point
-│
-├── models/                 # Older model folder (unused for build)
-│
-├── CMakeLists.txt          # Root-level build configuration
-├── build.sh                # Helper script to compile
-└── README.md               # ← You are here
+<img width="461" height="297" alt="image" src="https://github.com/user-attachments/assets/f111e61e-d002-4f31-8ee3-1c1480873d3c" />
+
 
 Requirements:
 
