@@ -1,5 +1,14 @@
-add_executable(main main.cpp)
+set(SOURCES
+    main.cpp
+    models/tick_atomic.hpp
+    models/tree_atomic.hpp
+    models/top_model.hpp
+)
 
-target_include_directories(main PRIVATE "." "models" $ENV{CADMIUM})
+add_executable(tree_sim ${SOURCES})
 
-target_compile_options(main PUBLIC -std=gnu++2b)
+target_include_directories(tree_sim PUBLIC
+    ${CMAKE_CURRENT_SOURCE_DIR}
+    ${CMAKE_CURRENT_SOURCE_DIR}/models
+)
+

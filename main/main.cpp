@@ -1,25 +1,30 @@
-#include "cadmium/simulation/root_coordinator.hpp"
-#include <limits>
-#include "models/top.hpp"
+#include <memory>
+#include <cadmium/core/modeling/coupled.hpp>
+#include <cadmium/core/simulation/root_coordinator.hpp>
 
-#include "cadmium/simulation/logger/stdout.hpp"
-#include "cadmium/simulation/logger/csv.hpp"
+#include "models/top_model.hpp"
+#include "cadmium/core/logger/json.hpp"   // <-- YOUR custom logger
 
-using namespace cadmium;
+int main() {
+    // Create the top model as shared_ptr (REQUIRED by RootCoordinator)
+    auto top = std::make_shared<TopModel>();
 
+    // Create root coordinator (starts at time 0)
+    cadmium::RootCoordinator root(top);
 
-int main()
-{
-	std::shared_ptr<topSystem> model = std::make_shared<topSystem> ("topSystem");
-	auto rootCoordinator = cadmium::RootCoordinator(model);
+    // Attach JSON logger
+    auto logger = std::make_shared<JSONLogger>();
+    root.setLogger(logger);
 
-	rootCoordinator.setLogger<STDOUTLogger>(";");
-	//rootCoordinator.setLogger<cadmium::CSVLogger>("trafficLightLog.csv", ";");
+    // Start simulation
+    root.start();
 
-	rootCoordinator.start();
-	rootCoordinator.simulate(50.0);
-	rootCoordinator.stop();
+    // Run for 50 time units (50 years)
+    root.simulate(50.0);
 
-	return 0;
+    // Stop simulation
+    root.stop();
+
+    return 0;
 }
 
